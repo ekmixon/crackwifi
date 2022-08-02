@@ -43,8 +43,7 @@ class Scan:
         process = reaver("-i", interface, "-b", self.bssid, "-f",
                          "-c", str(self.channel), "-vv", "-K", "-t",
                          str(timeout), "-S")
-        for line in iter(process.stdout.readline, ''):
-            yield line
+        yield from iter(process.stdout.readline, '')
 
 
 def _force_kill_monitor(monitor_interface: str = "wlan0mon"):
